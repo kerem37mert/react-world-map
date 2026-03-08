@@ -2,6 +2,8 @@
 
 A customizable, SVG-based interactive world map React library. No Google Maps, Leaflet, or Mapbox — pure SVG rendering with D3-geo projections, zoom/pan, orthographic globe, country/state styling, tooltips, and more.
 
+![React world map](./docs/world.gif)
+
 ---
 
 ## Installation

@@ -5,17 +5,17 @@ import type { MapFeature, CountryConfig, ProjectionType, ColorScheme } from 'rea
 import statesData from '../src/data/states-default.geo.json'
 
 const PROJECTIONS: { value: ProjectionType; label: string }[] = [
-  { value: 'naturalEarth',    label: 'Natural Earth' },
-  { value: 'mercator',        label: 'Mercator' },
+  { value: 'naturalEarth', label: 'Natural Earth' },
+  { value: 'mercator', label: 'Mercator' },
   { value: 'equirectangular', label: 'Equirectangular' },
-  { value: 'orthographic',    label: '🌍 Küre (Globe)' },
+  { value: 'orthographic', label: '🌍 Küre (Globe)' },
 ]
 
 const COLOR_SCHEMES: { value: ColorScheme | undefined; label: string }[] = [
-  { value: undefined,    label: 'Varsayılan' },
-  { value: 'continent',  label: 'Kıtalar' },
+  { value: undefined, label: 'Varsayılan' },
+  { value: 'continent', label: 'Kıtalar' },
   { value: 'monochrome', label: 'Gri' },
-  { value: 'dark',       label: 'Koyu' },
+  { value: 'dark', label: 'Koyu' },
 ]
 
 type Tab = 'genel' | 'katmanlar' | 'tiklama'
@@ -60,26 +60,26 @@ function Toggle({ label, value, onChange }: {
 }
 
 export default function App() {
-  const [tab, setTab]                         = useState<Tab>('genel')
-  const [lastClicked, setLastClicked]         = useState<MapFeature | null>(null)
-  const [projection, setProjection]           = useState<ProjectionType>('continent' as any || 'naturalEarth')
-  const [proj, setProj]                       = useState<ProjectionType>('naturalEarth')
-  const [colorScheme, setColorScheme]         = useState<ColorScheme | undefined>('continent')
-  const [highlighted, setHighlighted]         = useState<string | null>(null)
+  const [tab, setTab] = useState<Tab>('genel')
+  const [lastClicked, setLastClicked] = useState<MapFeature | null>(null)
+  const [projection, setProjection] = useState<ProjectionType>('continent' as any || 'naturalEarth')
+  const [proj, setProj] = useState<ProjectionType>('naturalEarth')
+  const [colorScheme, setColorScheme] = useState<ColorScheme | undefined>('continent')
+  const [highlighted, setHighlighted] = useState<string | null>(null)
 
   // Layer toggles
-  const [showGraticule,      setShowGraticule]      = useState(false)
-  const [showStateBorders,   setShowStateBorders]   = useState(false)
-  const [showCapitals,       setShowCapitals]        = useState(false)
-  const [showCapitalLabels,  setShowCapitalLabels]  = useState(false)
-  const [showLabels,         setShowLabels]          = useState(false)
-  const [showZoomControls,   setShowZoomControls]   = useState(true)
-  const [showTooltip,        setShowTooltip]         = useState(true)
-  const [autoRotate,         setAutoRotate]          = useState(false)
+  const [showGraticule, setShowGraticule] = useState(false)
+  const [showStateBorders, setShowStateBorders] = useState(false)
+  const [showCapitals, setShowCapitals] = useState(false)
+  const [showCapitalLabels, setShowCapitalLabels] = useState(false)
+  const [showLabels, setShowLabels] = useState(false)
+  const [showZoomControls, setShowZoomControls] = useState(true)
+  const [showTooltip, setShowTooltip] = useState(true)
+  const [autoRotate, setAutoRotate] = useState(false)
 
   const isGlobe = proj === 'orthographic'
 
-  const bgColor     = colorScheme === 'dark' ? '#0d1117' : '#a8d8ea'
+  const bgColor = colorScheme === 'dark' ? '#0d1117' : '#ffffff'
   const borderColor = colorScheme === 'dark' ? '#2a3a4a' : '#ffffff'
 
   const customCountries: CountryConfig[] = highlighted
@@ -148,13 +148,13 @@ export default function App() {
             {/* ── Katmanlar ── */}
             {tab === 'katmanlar' && (
               <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                <Toggle label="Enlem/Boylam Izgara"  value={showGraticule}     onChange={setShowGraticule} />
-                <Toggle label="İl/Eyalet Sınırları"   value={showStateBorders}  onChange={setShowStateBorders} />
-                <Toggle label="Başkentler"             value={showCapitals}      onChange={setShowCapitals} />
-                <Toggle label="Başkent İsimleri"       value={showCapitalLabels} onChange={(v) => { setShowCapitalLabels(v); if (v) setShowCapitals(true) }} />
-                <Toggle label="Ülke Adları"            value={showLabels}        onChange={setShowLabels} />
-                <Toggle label="Zoom Butonları"         value={showZoomControls}  onChange={setShowZoomControls} />
-                <Toggle label="Tooltip"                value={showTooltip}       onChange={setShowTooltip} />
+                <Toggle label="Enlem/Boylam Izgara" value={showGraticule} onChange={setShowGraticule} />
+                <Toggle label="İl/Eyalet Sınırları" value={showStateBorders} onChange={setShowStateBorders} />
+                <Toggle label="Başkentler" value={showCapitals} onChange={setShowCapitals} />
+                <Toggle label="Başkent İsimleri" value={showCapitalLabels} onChange={(v) => { setShowCapitalLabels(v); if (v) setShowCapitals(true) }} />
+                <Toggle label="Ülke Adları" value={showLabels} onChange={setShowLabels} />
+                <Toggle label="Zoom Butonları" value={showZoomControls} onChange={setShowZoomControls} />
+                <Toggle label="Tooltip" value={showTooltip} onChange={setShowTooltip} />
                 {!isGlobe && (
                   <div style={{ width: '100%', marginTop: 6, fontSize: 12, color: '#aaa' }}>
                     💡 Ülke adları için zoom yapın — yaklaştıkça daha fazla etiket görünür (çakışma önleme aktif)

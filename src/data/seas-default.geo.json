@@ -1,0 +1,245 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "mediterranean",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-6,30],
+            [36,30],
+            [36,47],
+            [-6,47],
+            [-6,30]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "mediterranean",
+        "name": "Mediterranean Sea"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "black-sea",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.5,40.8],
+            [41.5,40.8],
+            [41.5,46.5],
+            [27.5,46.5],
+            [27.5,40.8]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "black-sea",
+        "name": "Black Sea"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "red-sea",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [31.5,12],
+            [43.5,12],
+            [43.5,30],
+            [31.5,30],
+            [31.5,12]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "red-sea",
+        "name": "Red Sea"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "persian-gulf",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [47.5,22.5],
+            [57,22.5],
+            [57,30.5],
+            [47.5,30.5],
+            [47.5,22.5]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "persian-gulf",
+        "name": "Persian Gulf"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "arabian-sea",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [55,7],
+            [78,7],
+            [78,25],
+            [55,25],
+            [55,7]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "arabian-sea",
+        "name": "Arabian Sea"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bay-of-bengal",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80,4],
+            [100,4],
+            [100,23],
+            [80,23],
+            [80,4]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "bay-of-bengal",
+        "name": "Bay of Bengal"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "south-china-sea",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [99,-3],
+            [122,-3],
+            [122,24],
+            [99,24],
+            [99,-3]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "south-china-sea",
+        "name": "South China Sea"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "caribbean-sea",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-90,9],
+            [-59,9],
+            [-59,25],
+            [-90,25],
+            [-90,9]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "caribbean-sea",
+        "name": "Caribbean Sea"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gulf-of-mexico",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-98,17.5],
+            [-79.5,17.5],
+            [-79.5,31],
+            [-98,31],
+            [-98,17.5]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "gulf-of-mexico",
+        "name": "Gulf of Mexico"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "north-sea",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-4,51],
+            [10,51],
+            [10,61.5],
+            [-4,61.5],
+            [-4,51]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "north-sea",
+        "name": "North Sea"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "baltic-sea",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [9.5,53.5],
+            [30,53.5],
+            [30,65.5],
+            [9.5,65.5],
+            [9.5,53.5]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "baltic-sea",
+        "name": "Baltic Sea"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "caspian-sea",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [49,36.5],
+            [54.5,36.5],
+            [54.5,47],
+            [49,47],
+            [49,36.5]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "caspian-sea",
+        "name": "Caspian Sea"
+      }
+    }
+  ]
+}

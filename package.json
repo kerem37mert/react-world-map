@@ -1,6 +1,6 @@
 {
   "name": "@keremmert/react-world-map",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Customizable SVG-based interactive world map React library",
   "license": "MIT",
   "author": "Kerem Mert",

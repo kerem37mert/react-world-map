@@ -2,6 +2,18 @@
   "name": "@keremmert/react-world-map",
   "version": "1.0.3",
   "description": "Customizable SVG-based interactive world map React library",
+  "keywords": [
+    "react",
+    "react-map",
+    "world-map",
+    "react-world-map",
+    "interactive-map",
+    "svg-map",
+    "react-svg-map",
+    "geojson-map",
+    "react-visualization",
+    "map-component"
+  ],
   "license": "MIT",
   "author": "Kerem Mert",
   "homepage": "https://github.com/kerem37mert/react-world-map#readme",

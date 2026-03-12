@@ -213,6 +213,8 @@ export function WorldMap({
   }, [showStateBorders, stateFeatures, showStateBordersFor, pathGenerator])
 
   // ── Label collision detection ─────────────────────────────────────────────
+  const effectiveZoom = isOrtho ? globeScale : zoomScale
+
   const visibleLabels = useMemo(() => {
     if (!showLabels) return []
 
@@ -229,7 +231,7 @@ export function WorldMap({
 
     for (const { geoFeature, config } of sorted) {
       const lr = (geoFeature.properties?.labelrank as number) ?? 5
-      if (zoomScale < minZoomForLabelrank(lr)) continue
+      if (effectiveZoom < minZoomForLabelrank(lr)) continue
 
       const lng = geoFeature.properties?.labelLng as number | null
       const lat = geoFeature.properties?.labelLat as number | null
@@ -244,7 +246,7 @@ export function WorldMap({
       const [sx, sy] = currentTransform.apply(proj)
 
       // Approximate bounding box in SCREEN space (font renders at screen size)
-      const screenFs = labelFontSize * Math.sqrt(zoomScale)
+      const screenFs = labelFontSize * Math.sqrt(effectiveZoom)
       const w = (config.name?.length ?? 4) * screenFs * 0.58
       const h = screenFs * 1.6
       const box: [number, number, number, number] = [sx - w / 2, sy - h / 2, sx + w / 2, sy + h / 2]
@@ -262,7 +264,7 @@ export function WorldMap({
       placed.push(box)
     }
     return result
-  }, [showLabels, countries, zoomScale, projection, currentTransform, labelFontSize, containerSize, isOrtho, rotate])
+  }, [showLabels, countries, effectiveZoom, projection, currentTransform, labelFontSize, containerSize, isOrtho, rotate])
 
   // ── Event handlers ────────────────────────────────────────────────────────
 

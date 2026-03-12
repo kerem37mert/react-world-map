@@ -135,6 +135,10 @@ export interface WorldMapProps {
   rotateSpeed?: number
   /** Drag sensitivity: pixels per degree */
   rotateSensitivity?: number
+
+  // ── Markers ────────────────────────────────────────────────────
+  /** Custom pin/marker points on the map */
+  markers?: MarkerConfig[]
 }
 
 // Internal processed types
@@ -162,4 +166,14 @@ export interface CapitalCity {
   lat: number
   lng: number
   countryName: string
+}
+
+export interface MarkerConfig {
+  id?: string
+  lng: number
+  lat: number
+  label?: string
+  color?: string
+  size?: number
+  onClick?: (marker: MarkerConfig) => void
 }

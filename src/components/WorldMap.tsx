@@ -20,6 +20,7 @@ import MapCapital from './MapCapital'
 import MapLabel from './MapLabel'
 import MapGraticule from './MapGraticule'
 import MapZoomControls from './MapZoomControls'
+import MapMarker from './MapMarker'
 
 const DEFAULT_COUNTRY_COLOR = '#d4d4d4'
 const DEFAULT_BORDER_COLOR = '#ffffff'
@@ -100,6 +101,7 @@ export function WorldMap({
   autoRotate = false,
   rotateSpeed = 6,
   rotateSensitivity = 0.4,
+  markers,
 }: WorldMapProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
@@ -467,6 +469,18 @@ export function WorldMap({
               />
             ))
           )}
+
+          {/* Markers */}
+          {markers && markers
+            .filter((m) => !isOrtho || isOnFrontHemisphere(m.lng, m.lat, rotate))
+            .map((marker, i) => (
+              <MapMarker
+                key={marker.id ?? i}
+                marker={marker}
+                projection={projection}
+                zoomScale={isOrtho ? 1 : zoomScale}
+              />
+            ))}
 
           {/* Globe sphere outline (always shown in orthographic) */}
           {isOrtho && spherePath && (

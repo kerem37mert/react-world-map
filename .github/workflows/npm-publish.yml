@@ -1,13 +1,28 @@
 name: Publish Package
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: "Release type"
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - custom
+      custom_version:
+        description: "Custom version (only if custom selected)"
+        required: false
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +35,15 @@ jobs:
       - run: npm install
       - run: npm run build --if-present
 
-      - run: npm publish
+      - name: Set Version
+        run: |
+          if [ "${{ github.event.inputs.release_type }}" = "custom" ]; then
+            npm version ${{ github.event.inputs.custom_version }} --no-git-tag-version
+          else
+            npm version ${{ github.event.inputs.release_type }} --no-git-tag-version
+          fi
+
+      - name: Publish to npm
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

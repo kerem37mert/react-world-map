@@ -121,6 +121,42 @@ Labels include automatic collision detection. Less important countries appear at
 
 ---
 
+### Markers
+
+Place custom pins/markers at any geographic coordinate.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `markers` | `MarkerConfig[]` | `undefined` | Array of marker objects |
+
+**`MarkerConfig`:**
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `id` | `string` | — | Unique identifier (optional) |
+| `lng` | `number` | — | Longitude |
+| `lat` | `number` | — | Latitude |
+| `label` | `string` | — | Text shown next to marker |
+| `color` | `string` | `'#e53935'` | Marker color |
+| `size` | `number` | `6` | Marker radius (px) |
+| `onClick` | `(marker: MarkerConfig) => void` | — | Click handler |
+
+```tsx
+import { WorldMap, MarkerConfig } from '@keremmert/react-world-map'
+
+const markers: MarkerConfig[] = [
+  { id: 'istanbul', lng: 28.97, lat: 41.01, label: 'Istanbul', color: '#e53935' },
+  { id: 'paris',    lng: 2.35,  lat: 48.85, label: 'Paris',    color: '#1976d2' },
+  { id: 'tokyo',    lng: 139.69, lat: 35.68, label: 'Tokyo',   color: '#388e3c' },
+]
+
+<WorldMap markers={markers} />
+```
+
+> Markers are automatically hidden on the back hemisphere in globe (orthographic) mode.
+
+---
+
 ### State / Province Borders
 
 Province border data is included in the package and imported separately:

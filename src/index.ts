@@ -7,4 +7,5 @@ export type {
   WorldConfig,
   MapFeature,
   ProjectionType,
+  MarkerConfig,
 } from './types'

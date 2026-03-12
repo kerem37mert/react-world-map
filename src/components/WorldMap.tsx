@@ -20,6 +20,7 @@ import MapCapital from './MapCapital'
 import MapLabel from './MapLabel'
 import MapGraticule from './MapGraticule'
 import MapZoomControls from './MapZoomControls'
+import MapMarker from './MapMarker'
 
 const DEFAULT_COUNTRY_COLOR = '#d4d4d4'
 const DEFAULT_BORDER_COLOR = '#ffffff'
@@ -100,6 +101,7 @@ export function WorldMap({
   autoRotate = false,
   rotateSpeed = 6,
   rotateSensitivity = 0.4,
+  markers,
 }: WorldMapProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
@@ -211,6 +213,8 @@ export function WorldMap({
   }, [showStateBorders, stateFeatures, showStateBordersFor, pathGenerator])
 
   // ── Label collision detection ─────────────────────────────────────────────
+  const effectiveZoom = isOrtho ? globeScale : zoomScale
+
   const visibleLabels = useMemo(() => {
     if (!showLabels) return []
 
@@ -227,7 +231,7 @@ export function WorldMap({
 
     for (const { geoFeature, config } of sorted) {
       const lr = (geoFeature.properties?.labelrank as number) ?? 5
-      if (zoomScale < minZoomForLabelrank(lr)) continue
+      if (effectiveZoom < minZoomForLabelrank(lr)) continue
 
       const lng = geoFeature.properties?.labelLng as number | null
       const lat = geoFeature.properties?.labelLat as number | null
@@ -242,7 +246,7 @@ export function WorldMap({
       const [sx, sy] = currentTransform.apply(proj)
 
       // Approximate bounding box in SCREEN space (font renders at screen size)
-      const screenFs = labelFontSize * Math.sqrt(zoomScale)
+      const screenFs = labelFontSize * Math.sqrt(effectiveZoom)
       const w = (config.name?.length ?? 4) * screenFs * 0.58
       const h = screenFs * 1.6
       const box: [number, number, number, number] = [sx - w / 2, sy - h / 2, sx + w / 2, sy + h / 2]
@@ -260,7 +264,7 @@ export function WorldMap({
       placed.push(box)
     }
     return result
-  }, [showLabels, countries, zoomScale, projection, currentTransform, labelFontSize, containerSize, isOrtho, rotate])
+  }, [showLabels, countries, effectiveZoom, projection, currentTransform, labelFontSize, containerSize, isOrtho, rotate])
 
   // ── Event handlers ────────────────────────────────────────────────────────
 
@@ -467,6 +471,18 @@ export function WorldMap({
               />
             ))
           )}
+
+          {/* Markers */}
+          {markers && markers
+            .filter((m) => !isOrtho || isOnFrontHemisphere(m.lng, m.lat, rotate))
+            .map((marker, i) => (
+              <MapMarker
+                key={marker.id ?? i}
+                marker={marker}
+                projection={projection}
+                zoomScale={isOrtho ? 1 : zoomScale}
+              />
+            ))}
 
           {/* Globe sphere outline (always shown in orthographic) */}
           {isOrtho && spherePath && (
